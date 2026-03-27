@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B2B Homepage Roaster - Free Homepage Copy Scorer | Zero Hype</title>
+  <meta name="description" content="Paste your homepage copy. Get a score out of 100. Find out exactly why visitors leave without buying. Free.">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://zerohypelab.com/homepage-roaster/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zerohypelab.com/homepage-roaster/">
+  <meta property="og:title" content="B2B Homepage Roaster - Free Homepage Copy Scorer">
+  <meta property="og:description" content="Paste your homepage copy. Get a score out of 100. Find out exactly why visitors leave without buying. Free.">
+  <meta property="og:site_name" content="Zero Hype">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@zerohype_co">
+  <meta name="twitter:title" content="B2B Homepage Roaster - Free Homepage Copy Scorer">
+  <meta name="twitter:description" content="Paste your homepage copy. Get a score out of 100. Find out exactly why visitors leave without buying. Free.">
+
+  <!-- Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "B2B Homepage Roaster",
+    "description": "Free tool to score B2B homepage copy. Analyzes headline clarity, ICP specificity, social proof, CTA strength, and value prop. Score 0-100.",
+    "url": "https://zerohypelab.com/homepage-roaster/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "provider": {
+      "@type": "Organization",
+      "name": "Zero Hype",
+      "url": "https://zerohypelab.com"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --red: #e05252;
+      --red-dim: #b03f3f;
+      --bg: #0e0e0e;
+      --bg-card: #161616;
+      --bg-input: #111111;
+      --border: #222222;
+      --border-light: #2e2e2e;
+      --text: #e8e8e8;
+      --text-dim: #888888;
+      --text-muted: #484848;
+      --green: #4caf50;
+      --yellow: #e8a020;
+      --orange: #e06820;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      padding: 24px 40px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--text-dim);
+      text-decoration: none;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .nav-logo span { color: var(--red); }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+    .nav-links a {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.02em;
+    }
+    .nav-links a:hover { color: var(--text-dim); }
+
+    /* LAYOUT */
+    .container {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 80px 0 52px;
+      text-align: center;
+    }
+
+    .hero-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--red);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 60px);
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      margin-bottom: 22px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--red);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      color: var(--text-dim);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    /* HOW IT WORKS STRIP */
+    .how-strip {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 52px;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .how-item {
+      flex: 1;
+      padding: 20px 16px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .how-item:last-child { border-right: none; }
+    .how-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+    .how-text {
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    /* INPUT */
+    .input-wrapper {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 0;
+    }
+
+    .input-header {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .input-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--border-light);
+    }
+    .input-dot.red { background: var(--red); opacity: 0.7; }
+    .input-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .copy-textarea {
+      width: 100%;
+      min-height: 280px;
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 24px;
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.85;
+      resize: vertical;
+      caret-color: var(--red);
+    }
+    .copy-textarea::placeholder { color: var(--text-muted); }
+
+    .input-footer {
+      padding: 14px 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .word-count {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .word-count.warn { color: var(--yellow); }
+
+    .roast-btn {
+      background: var(--red);
+      color: #fff;
+      border: none;
+      padding: 12px 36px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.1s;
+      text-transform: uppercase;
+    }
+    .roast-btn:hover { background: var(--red-dim); }
+    .roast-btn:active { transform: scale(0.98); }
+    .roast-btn:disabled {
+      background: var(--border-light);
+      color: var(--text-muted);
+      cursor: not-allowed;
+    }
+
+    /* RESULTS */
+    .results-section {
+      display: none;
+      padding-top: 48px;
+      padding-bottom: 80px;
+    }
+    .results-section.visible { display: block; }
+
+    /* Score Card */
+    .score-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 3px;
+      padding: 40px;
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .score-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 28px;
+    }
+
+    .score-label-small {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .score-big {
+      font-family: 'DM Mono', monospace;
+      font-size: 80px;
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      transition: color 0.5s;
+    }
+    .score-big.s-green  { color: #4caf50; }
+    .score-big.s-yellow { color: #e8a020; }
+    .score-big.s-orange { color: #e06820; }
+    .score-big.s-red    { color: #e05252; }
+
+    .score-out-of {
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .score-brand {
+      text-align: right;
+    }
+    .score-brand-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .score-brand-url {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+    .score-brand-url:hover { color: var(--red); }
+
+    .score-bar-track {
+      height: 5px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+    .score-bar-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 3px;
+      transition: width 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.5s;
+    }
+
+    .verdict-headline {
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+    .verdict-body {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      max-width: 520px;
+    }
+
+    /* Analyzer Breakdown */
+    .breakdown-section {
+      margin-bottom: 28px;
+    }
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .analyzer-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .analyzer-row {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 16px 20px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      animation: fadeSlide 0.3s ease both;
+    }
+
+    .analyzer-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .analyzer-verdict {
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    .analyzer-score-col {
+      text-align: right;
+      white-space: nowrap;
+    }
+    .analyzer-score-val {
+      font-family: 'DM Mono', monospace;
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+    .analyzer-score-max {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+
+    .analyzer-score-val.full  { color: #4caf50; }
+    .analyzer-score-val.good  { color: #8bc34a; }
+    .analyzer-score-val.mid   { color: #e8a020; }
+    .analyzer-score-val.low   { color: #e06820; }
+    .analyzer-score-val.zero  { color: #e05252; }
+
+    .score-mini-bar {
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    .score-mini-fill {
+      height: 100%;
+      border-radius: 2px;
+      width: 0%;
+    }
+
+    /* Callouts */
+    .callouts-section {
+      margin-bottom: 28px;
+    }
+    .callout-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .callout-item {
+      background: rgba(224, 82, 82, 0.05);
+      border: 1px solid rgba(224, 82, 82, 0.18);
+      border-left: 3px solid var(--red);
+      border-radius: 2px;
+      padding: 14px 18px;
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--text);
+      animation: fadeSlide 0.3s ease both;
+    }
+    .callout-item.positive {
+      background: rgba(76, 175, 80, 0.05);
+      border: 1px solid rgba(76, 175, 80, 0.18);
+      border-left: 3px solid #4caf50;
+    }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .no-issues {
+      background: rgba(76, 175, 80, 0.05);
+      border: 1px solid rgba(76, 175, 80, 0.2);
+      border-radius: 3px;
+      padding: 24px;
+      text-align: center;
+      color: #4caf50;
+      font-size: 14px;
+    }
+
+    /* Actions */
+    .actions-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 48px;
+    }
+    .btn-action {
+      flex: 1;
+      background: transparent;
+      border: 1px solid var(--border-light);
+      color: var(--text-dim);
+      padding: 12px 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-action:hover {
+      border-color: var(--text-muted);
+      color: var(--text);
+    }
+
+    /* CTA Block */
+    .cta-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-left: 4px solid var(--red);
+      border-radius: 3px;
+      padding: 40px;
+      margin-bottom: 48px;
+    }
+    .cta-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--red);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .cta-heading {
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 14px;
+    }
+    .cta-body {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.75;
+      margin-bottom: 28px;
+      max-width: 480px;
+    }
+    .cta-link {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 32px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      border-radius: 2px;
+      transition: background 0.2s;
+      text-transform: uppercase;
+    }
+    .cta-link:hover { background: var(--red-dim); }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 44px 0;
+    }
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 24px;
+    }
+    .footer-links a {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text-dim); }
+    .footer-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* Responsive */
+    @media (max-width: 620px) {
+      nav { padding: 18px 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 52px 0 36px; }
+      .how-strip { display: none; }
+      .score-card { padding: 28px 20px; }
+      .score-big { font-size: 60px; }
+      .verdict-headline { font-size: 20px; }
+      .analyzer-row { grid-template-columns: 1fr; }
+      .analyzer-score-col { text-align: left; }
+      .actions-row { flex-direction: column; }
+      .cta-block { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="https://zerohypelab.com" class="nav-logo">Zero<span>Hype</span></a>
+    <div class="nav-links">
+      <a href="https://zerohypelab.com/marketing-autopsy/">Marketing Autopsy</a>
+      <a href="https://zerohypelab.com/outreach-autopsy/">Outreach Autopsy</a>
+      <a href="https://zerohypelab.com/cold-email-roaster/">Cold Email Roaster</a>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-tag">// Free Tool · No Sign-Up · No Backend</div>
+      <h1>Homepage <em>Roaster</em></h1>
+      <p class="hero-sub">Paste your above-the-fold copy. Get a score out of 100. Find out exactly why visitors leave without buying. No upsells. No sugarcoating. Just the uncomfortable truth.</p>
+    </section>
+
+    <!-- HOW IT WORKS STRIP -->
+    <div class="how-strip">
+      <div class="how-item">
+        <div class="how-num">01.</div>
+        <div class="how-text">Paste your homepage copy into the box</div>
+      </div>
+      <div class="how-item">
+        <div class="how-num">02.</div>
+        <div class="how-text">Click Roast It</div>
+      </div>
+      <div class="how-item">
+        <div class="how-num">03.</div>
+        <div class="how-text">Get your score out of 100 across 5 categories</div>
+      </div>
+      <div class="how-item">
+        <div class="how-num">04.</div>
+        <div class="how-text">Read the breakdown. Fix what is broken.</div>
+      </div>
+    </div>
+
+    <!-- INPUT SECTION -->
+    <section id="inputSection">
+      <div class="input-wrapper">
+        <div class="input-header">
+          <div class="input-dot red"></div>
+          <div class="input-dot"></div>
+          <div class="input-dot"></div>
+          <span class="input-label">Paste homepage copy here</span>
+        </div>
+        <textarea
+          class="copy-textarea"
+          id="copyInput"
+          placeholder="The innovative platform for businesses of all sizes.
+
+We help companies leverage cutting-edge solutions to transform their workflows and empower their teams to achieve world-class results.
+
+Get Started   Learn More
+
+Trusted by teams everywhere. Scalable. Robust. Seamless.
+
+(This is what a failing homepage looks like. Paste yours above.)"
+          oninput="updateWordCount()"
+        ></textarea>
+        <div class="input-footer">
+          <span class="word-count" id="wordCount">0 words</span>
+          <button class="roast-btn" id="roastBtn" onclick="roastHomepage()" disabled>Roast It</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS SECTION -->
+    <section class="results-section" id="resultsSection">
+
+      <!-- Score Card -->
+      <div class="score-card">
+        <div class="score-card-top">
+          <div>
+            <div class="score-label-small">Homepage Score</div>
+            <div class="score-big" id="scoreBig">0</div>
+            <div class="score-out-of">/ 100</div>
+          </div>
+          <div class="score-brand">
+            <div class="score-brand-name">Zero Hype</div>
+            <a class="score-brand-url" href="https://zerohypelab.com/homepage-roaster/" target="_blank" rel="noopener">homepage-roaster</a>
+          </div>
+        </div>
+        <div class="score-bar-track">
+          <div class="score-bar-fill" id="scoreBarFill"></div>
+        </div>
+        <div class="verdict-headline" id="verdictHeadline"></div>
+        <div class="verdict-body" id="verdictBody"></div>
+      </div>
+
+      <!-- Analyzer Breakdown -->
+      <div class="breakdown-section">
+        <div class="section-label">// 5 analyzer breakdown</div>
+        <div class="analyzer-grid" id="analyzerGrid"></div>
+      </div>
+
+      <!-- Callouts -->
+      <div class="callouts-section">
+        <div class="section-label">// What the roaster found</div>
+        <div class="callout-list" id="calloutList"></div>
+      </div>
+
+      <!-- Actions -->
+      <div class="actions-row">
+        <button class="btn-action" id="copyBtn" onclick="copyScorecard()">Copy Scorecard Text</button>
+        <button class="btn-action" onclick="retryInput()">Roast Another Page</button>
+      </div>
+
+      <!-- CTA Block -->
+      <div class="cta-block">
+        <div class="cta-tag">// Your messaging is making you invisible</div>
+        <h2 class="cta-heading">Your homepage copy is losing buyers before they scroll.</h2>
+        <p class="cta-body">A bad score is a symptom. The root cause is usually positioning: wrong message, wrong audience, wrong frame. Get a Marketing Autopsy. A full diagnosis of what is breaking your marketing and a rewrite roadmap. $49.</p>
+        <a href="https://zerohypelab.com/marketing-autopsy/" class="cta-link">Get the Marketing Autopsy - $49</a>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-links">
+          <a href="https://zerohypelab.com">All Tools</a>
+          <a href="https://zerohypelab.com/marketing-autopsy/">Marketing Autopsy - $49</a>
+          <a href="https://zerohypelab.com/outreach-autopsy/">Outreach Autopsy - $99</a>
+          <a href="https://zerohypelab.com/campaign-autopsy/">Campaign Autopsy - $500</a>
+          <a href="https://zerohypelab.com/cold-email-roaster/">Cold Email Roaster</a>
+          <a href="https://x.com/zerohype_co">@zerohype_co</a>
+        </div>
+        <div class="footer-copy">Zero Hype · B2B Marketing Diagnostics · No hype. Just truth.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  // ===================================================
+  //  ZERO HYPE B2B HOMEPAGE ROASTER
+  //  Scoring Engine v1.0
+  //  Higher score = clearer, stronger homepage
+  // ===================================================
+
+  // ─── VAGUE HEADLINE WORDS ───
+  var VAGUE_WORDS = [
+    'innovative', 'next-generation', 'solutions', 'platform', 'cutting-edge',
+    'world-class', 'leading', 'best-in-class', 'revolutionize', 'transform',
+    'empower', 'seamless', 'robust', 'scalable', 'holistic'
+  ];
+
+  // ─── ACTION VERBS ───
+  var ACTION_VERBS = [
+    'helps', 'makes', 'gives', 'lets', 'turns', 'builds', 'saves', 'finds', 'creates'
+  ];
+
+  // ─── ICP: VAGUE PHRASES ───
+  var ICP_VAGUE = [
+    'everyone', 'businesses of all sizes', 'any business', 'all companies', 'for you', 'for anyone'
+  ];
+
+  // ─── ICP: SPECIFIC SIGNALS ───
+  var ICP_SPECIFIC = [
+    'b2b', 'saas', 'startup', 'enterprise', 'smb', 'agency', 'founder',
+    'cto', 'cmo', 'vp', 'director', 'manager', 'team'
+  ];
+
+  // ─── WEAK CTAs ───
+  var CTA_WEAK = [
+    'learn more', 'get started', 'discover', 'explore', 'find out more', 'click here', 'read more'
+  ];
+
+  // ─── STRONG CTAs ───
+  var CTA_STRONG = [
+    'book', 'schedule', 'start free', 'try free', 'get your', 'see how',
+    'request', 'download', 'calculate'
+  ];
+
+  // ─── POSITIVE MESSAGE DETECTOR ───
+  function isPositiveMsg(msg) {
+    return /detected|found|outperform|works|convert|credib|action-orient|anchor|trust|narrows|closes|changes|signal/i.test(msg);
+  }
+
+  // ─── UTILITY ───
+  function countWords(text) {
+    return text.trim().split(/\s+/).filter(function(w) { return w.length > 0; }).length;
+  }
+
+  function getFirstLine(text) {
+    var lines = text.trim().split('\n');
+    for (var i = 0; i < lines.length; i++) {
+      if (lines[i].trim().length > 3) return lines[i].trim();
+    }
+    return '';
+  }
+
+  function getFirst15Words(text) {
+    return getFirstLine(text).split(/\s+/).slice(0, 15).join(' ');
+  }
+
+  function getFirst200Words(text) {
+    return text.trim().split(/\s+/).slice(0, 200).join(' ');
+  }
+
+  // ─── ANALYZER 1: HEADLINE CLARITY (0-20) ───
+  function analyzeHeadlineClarity(text) {
+    var score = 20;
+    var firstLine = getFirstLine(text);
+    var firstWords = getFirst15Words(text).toLowerCase();
+    var msgs = [];
+
+    VAGUE_WORDS.forEach(function(word) {
+      if (firstWords.indexOf(word) !== -1) {
+        score -= 3;
+        msgs.push('Vague word in headline: "' + word + '". Cold visitors do not know what you sell.');
+      }
+    });
+
+    var firstLineWordCount = firstLine.split(/\s+/).filter(function(w) { return w.length > 0; }).length;
+    if (firstLineWordCount > 12) {
+      score -= 4;
+      msgs.push('First line is ' + firstLineWordCount + ' words. Over 12 words and you have lost them. Shorter.');
+    }
+
+    if (firstLine.trim().endsWith('?')) {
+      score -= 5;
+      msgs.push('Headline ends with a question mark. Questions do not tell visitors what you sell. Statements do.');
+    }
+
+    var hasActionVerb = ACTION_VERBS.some(function(v) { return firstWords.indexOf(v) !== -1; });
+    if (!hasActionVerb) {
+      score -= 3;
+      msgs.push('No action verb in the first line. Good headlines say what the product does: helps, makes, saves, builds, gives.');
+    }
+
+    if (msgs.length === 0) {
+      msgs.push('Headline is clear and direct. Visitors can tell what you do from the first line.');
+    }
+
+    score = Math.max(0, Math.min(20, score));
+    return { score: score, name: 'Headline Clarity', msgs: msgs };
+  }
+
+  // ─── ANALYZER 2: ICP SPECIFICITY (0-20) ───
+  function analyzeICPSpecificity(text) {
+    var score = 10;
+    var lower = text.toLowerCase();
+    var msgs = [];
+
+    ICP_VAGUE.forEach(function(phrase) {
+      if (lower.indexOf(phrase) !== -1) {
+        score -= 4;
+        msgs.push('"' + phrase + '" - if you sell to everyone you sell to no one. Name the buyer.');
+      }
+    });
+
+    var bonus = 0;
+    ICP_SPECIFIC.forEach(function(word) {
+      var re = new RegExp('\\b' + word + '\\b', 'i');
+      if (re.test(text) && bonus < 10) {
+        bonus += 3;
+      }
+    });
+    if (bonus > 0) {
+      msgs.push('Specific buyer language detected. Named audiences convert better than generic copy.');
+    }
+    score += Math.min(bonus, 10);
+
+    if (msgs.length === 0) {
+      msgs.push('No strong ICP signals. Add a named buyer: "for SaaS founders", "for B2B teams", "built for agencies".');
+    }
+
+    score = Math.max(0, Math.min(20, score));
+    return { score: score, name: 'ICP Specificity', msgs: msgs };
+  }
+
+  // ─── ANALYZER 3: SOCIAL PROOF (0-20) ───
+  function analyzeSocialProof(text) {
+    var score = 0;
+    var msgs = [];
+
+    if (/\d+\s*[%+]/.test(text)) {
+      score += 4;
+      msgs.push('Quantified claim found. Numbers outperform adjectives every time.');
+    }
+
+    if (/trusted by|used by|loved by/i.test(text)) {
+      score += 4;
+      msgs.push('"Trusted by / used by" language detected. Social anchoring works.');
+    }
+
+    if (/increased\s+\w+(\s+\w+)?\s+by\s+/i.test(text)) {
+      score += 4;
+      msgs.push('Case study result language found. Specific outcomes convert better than claims.');
+    }
+
+    if (/"[^"]{20,}"/.test(text) || /\u201c[^\u201d]{20,}\u201d/.test(text)) {
+      score += 4;
+      msgs.push('Customer quote detected. Third-party voice builds trust faster than self-description.');
+    }
+
+    if (/\b\d[\d,]*\s*(customers?|clients?|users?|companies|teams?|brands?)\b/i.test(text)) {
+      score += 4;
+      msgs.push('Customer count mentioned. Volume signals credibility.');
+    }
+
+    if (score === 0) {
+      msgs.push('No social proof found. No numbers, no quotes, no customer count. Every claim on this page is self-reported.');
+    }
+
+    score = Math.min(20, score);
+    return { score: score, name: 'Social Proof', msgs: msgs };
+  }
+
+  // ─── ANALYZER 4: CTA STRENGTH (0-20) ───
+  function analyzeCTAStrength(text) {
+    var score = 10;
+    var lower = text.toLowerCase();
+    var msgs = [];
+
+    CTA_WEAK.forEach(function(phrase) {
+      if (lower.indexOf(phrase) !== -1) {
+        score -= 4;
+        msgs.push('"' + phrase + '" is a passive CTA. It signals low commitment. Visitors sense it.');
+      }
+    });
+
+    var ctaBonus = 0;
+    CTA_STRONG.forEach(function(phrase) {
+      if (lower.indexOf(phrase) !== -1 && ctaBonus < 8) {
+        ctaBonus += 4;
+        msgs.push('"' + phrase + '" is action-oriented. This is what a strong CTA looks like.');
+      }
+    });
+    score += ctaBonus;
+
+    if (!/\b(free|trial|demo|today)\b/i.test(text)) {
+      score -= 2;
+      msgs.push('No "free", "trial", "demo", or "today" in the copy. No urgency signal. No reason to act now.');
+    }
+
+    if (msgs.length === 0) {
+      msgs.push('CTA language is strong. Visitors know what action to take.');
+    }
+
+    score = Math.max(0, Math.min(20, score));
+    return { score: score, name: 'CTA Strength', msgs: msgs };
+  }
+
+  // ─── ANALYZER 5: VALUE PROP CLARITY (0-20) ───
+  function analyzeValueProp(text) {
+    var score = 0;
+    var first200 = getFirst200Words(text);
+    var msgs = [];
+
+    if (/\b(is a|is an|helps?|lets you|allows you|makes it)\b/i.test(first200)) {
+      score += 7;
+      msgs.push('WHAT: the product explains what it does. Visitors can place it.');
+    } else {
+      msgs.push('Missing the WHAT. Your homepage does not explain what the product actually is or does.');
+    }
+
+    if (/\b(for\s+\w+s?\b|built for|designed for)\b/i.test(first200)) {
+      score += 7;
+      msgs.push('WHO: specifies who it is for. This filters the right visitors in and the wrong ones out.');
+    } else {
+      msgs.push('Missing the WHO. "Built for [X]" or "for [audience]" narrows the reader and increases relevance.');
+    }
+
+    if (/\b(so you can|which means|result|outcome|without)\b/i.test(first200)) {
+      score += 6;
+      msgs.push('OUTCOME: shows what the reader gets or avoids. This is what makes visitors take action.');
+    } else {
+      msgs.push('Missing the OUTCOME. "So you can [result]" or "without [pain]" closes the loop. Visitors need to see what changes for them.');
+    }
+
+    score = Math.min(20, score);
+    return { score: score, name: 'Value Prop Clarity', msgs: msgs };
+  }
+
+  // ─── VERDICT ───
+  function getVerdict(total) {
+    if (total >= 80) return {
+      head: 'Doing its job.',
+      body: 'Your homepage communicates clearly. Visitors understand what you sell, who it is for, and why it matters.',
+      barColor: '#4caf50',
+      cls: 's-green'
+    };
+    if (total >= 60) return {
+      head: 'Weak spots.',
+      body: 'Works for warm traffic. Cold visitors leave confused. Fix the issues below before running ads.',
+      barColor: '#e8a020',
+      cls: 's-yellow'
+    };
+    if (total >= 40) return {
+      head: 'Visitors leave confused.',
+      body: 'Most visitors cannot explain what you sell after reading your homepage. Significant rewrite needed.',
+      barColor: '#e06820',
+      cls: 's-orange'
+    };
+    return {
+      head: 'Actively losing customers.',
+      body: 'Your homepage is working against you. Every ad dollar hits this page and dies.',
+      barColor: '#e05252',
+      cls: 's-red'
+    };
+  }
+
+  // ─── SCORE CLASS ───
+  function scoreClass(val) {
+    var pct = val / 20;
+    if (pct >= 0.85) return 'full';
+    if (pct >= 0.65) return 'good';
+    if (pct >= 0.40) return 'mid';
+    if (pct >= 0.20) return 'low';
+    return 'zero';
+  }
+
+  function miniBarColor(cls) {
+    var map = { full: '#4caf50', good: '#8bc34a', mid: '#e8a020', low: '#e06820', zero: '#e05252' };
+    return map[cls] || '#e05252';
+  }
+
+  // ─── SAFE DOM HELPERS ───
+  function makeEl(tag, className) {
+    var el = document.createElement(tag);
+    if (className) el.className = className;
+    return el;
+  }
+
+  function makeText(tag, className, text) {
+    var el = makeEl(tag, className);
+    el.textContent = text;
+    return el;
+  }
+
+  // ─── STATE ───
+  var _lastScore = 0;
+  var _lastAnalyzers = [];
+
+  // ─── MAIN ROAST FUNCTION ───
+  function roastHomepage() {
+    var text = document.getElementById('copyInput').value;
+    if (!text.trim() || countWords(text) < 5) return;
+
+    var h  = analyzeHeadlineClarity(text);
+    var ic = analyzeICPSpecificity(text);
+    var sp = analyzeSocialProof(text);
+    var ct = analyzeCTAStrength(text);
+    var vp = analyzeValueProp(text);
+
+    var analyzers = [h, ic, sp, ct, vp];
+    var total = 0;
+    analyzers.forEach(function(a) { total += a.score; });
+
+    _lastScore = total;
+    _lastAnalyzers = analyzers;
+
+    renderResults(total, analyzers, getVerdict(total));
+  }
+
+  function renderResults(total, analyzers, v) {
+    // Score number
+    var scoreBig = document.getElementById('scoreBig');
+    scoreBig.textContent = String(total);
+    scoreBig.className = 'score-big ' + v.cls;
+
+    // Bar
+    var fill = document.getElementById('scoreBarFill');
+    fill.style.width = '0%';
+    fill.style.backgroundColor = v.barColor;
+    setTimeout(function() { fill.style.width = total + '%'; }, 60);
+
+    // Verdict text
+    document.getElementById('verdictHeadline').textContent = v.head;
+    document.getElementById('verdictBody').textContent = v.body;
+
+    // Analyzer grid - built with safe DOM methods
+    var grid = document.getElementById('analyzerGrid');
+    grid.textContent = '';
+
+    analyzers.forEach(function(a, idx) {
+      var pct = Math.round((a.score / 20) * 100);
+      var cls = scoreClass(a.score);
+      var summaryMsg = a.msgs[0] || '';
+
+      var row = makeEl('div', 'analyzer-row');
+      row.style.animationDelay = (idx * 0.07) + 's';
+
+      // Left column
+      var left = makeEl('div', 'analyzer-left');
+      left.appendChild(makeText('div', 'analyzer-name', a.name));
+      left.appendChild(makeText('div', 'analyzer-verdict', summaryMsg));
+
+      var miniBar = makeEl('div', 'score-mini-bar');
+      var miniFill = makeEl('div', 'score-mini-fill');
+      miniFill.style.width = '0%';
+      miniFill.style.backgroundColor = miniBarColor(cls);
+      miniBar.appendChild(miniFill);
+      left.appendChild(miniBar);
+
+      // Right column
+      var right = makeEl('div', 'analyzer-score-col');
+      right.appendChild(makeText('div', 'analyzer-score-val ' + cls, String(a.score)));
+      right.appendChild(makeText('div', 'analyzer-score-max', '/ 20'));
+
+      row.appendChild(left);
+      row.appendChild(right);
+      grid.appendChild(row);
+
+      // Animate mini bar after render
+      (function(mf, p) {
+        setTimeout(function() {
+          mf.style.transition = 'width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          mf.style.width = p + '%';
+        }, 80 + idx * 70);
+      }(miniFill, pct));
+    });
+
+    // Callouts - show secondary messages (skip first msg already shown in grid)
+    var calloutList = document.getElementById('calloutList');
+    calloutList.textContent = '';
+    var calloutDelay = 0;
+    var calloutCount = 0;
+
+    analyzers.forEach(function(a) {
+      a.msgs.forEach(function(msg, idx) {
+        // Skip first message if it is a positive confirmation (already shown in grid summary)
+        if (idx === 0 && isPositiveMsg(msg)) return;
+        var isPos = isPositiveMsg(msg);
+        var item = makeEl('div', 'callout-item' + (isPos ? ' positive' : ''));
+        item.style.animationDelay = calloutDelay + 's';
+        item.textContent = msg;
+        calloutList.appendChild(item);
+        calloutDelay += 0.05;
+        calloutCount++;
+      });
+    });
+
+    if (calloutCount === 0) {
+      var ok = makeEl('div', 'no-issues');
+      ok.textContent = 'No major issues found. Your homepage communicates clearly.';
+      calloutList.appendChild(ok);
+    }
+
+    // Show results section
+    var section = document.getElementById('resultsSection');
+    section.classList.add('visible');
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ─── WORD COUNT ───
+  function updateWordCount() {
+    var text = document.getElementById('copyInput').value;
+    var words = countWords(text);
+    var el = document.getElementById('wordCount');
+    el.textContent = words + ' word' + (words !== 1 ? 's' : '');
+    el.className = 'word-count' + (words > 0 && words < 20 ? ' warn' : '');
+    document.getElementById('roastBtn').disabled = (words < 5);
+  }
+
+  // ─── COPY SCORECARD ───
+  function copyScorecard() {
+    if (_lastAnalyzers.length === 0) return;
+    var lines = [
+      'B2B Homepage Roaster - zerohypelab.com/homepage-roaster/',
+      'Score: ' + _lastScore + '/100',
+      ''
+    ];
+    _lastAnalyzers.forEach(function(a) {
+      lines.push(a.name + ': ' + a.score + '/20');
+    });
+    var btn = document.getElementById('copyBtn');
+    navigator.clipboard.writeText(lines.join('\n')).then(function() {
+      var orig = btn.textContent;
+      btn.textContent = 'Copied.';
+      setTimeout(function() { btn.textContent = orig; }, 1800);
+    });
+  }
+
+  // ─── RETRY ───
+  function retryInput() {
+    document.getElementById('resultsSection').classList.remove('visible');
+    document.getElementById('copyInput').value = '';
+    document.getElementById('wordCount').textContent = '0 words';
+    document.getElementById('roastBtn').disabled = true;
+    document.getElementById('inputSection').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  </script>
+</body>
+</html>
