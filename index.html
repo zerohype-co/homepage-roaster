@@ -592,6 +592,65 @@
       text-transform: uppercase;
     }
 
+    /* ── Input tabs ── */
+    .input-tabs {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 0;
+    }
+    .input-tab {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-bottom: none;
+      color: var(--text-muted);
+      padding: 10px 22px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      border-radius: 2px 2px 0 0;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .input-tab:hover { color: var(--text-dim); }
+    .input-tab.active {
+      color: var(--text);
+      border-color: var(--border-light);
+      background: var(--bg-input);
+    }
+
+    /* ── URL input ── */
+    .url-input-area {
+      padding: 20px 24px 8px;
+    }
+    .url-input {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--border-light);
+      border-radius: 2px;
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .url-input:focus { border-color: var(--text-muted); }
+    .url-input::placeholder { color: var(--text-muted); }
+    .url-hint {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+    .url-status {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .url-status.loading { color: var(--yellow); }
+    .url-status.error   { color: var(--red); }
+
     /* Responsive */
     @media (max-width: 620px) {
       nav { padding: 18px 20px; }
@@ -623,7 +682,7 @@
 
     <!-- HERO -->
     <section class="hero">
-      <div class="hero-tag">// Free Tool · No Sign-Up · No Backend</div>
+      <div class="hero-tag">// Free Tool · No Sign-Up · Paste or Enter URL</div>
       <h1>Homepage <em>Roaster</em></h1>
       <p class="hero-sub">Paste your above-the-fold copy. Get a score out of 100. Find out exactly why visitors leave without buying. No upsells. No sugarcoating. Just the uncomfortable truth.</p>
     </section>
@@ -650,12 +709,20 @@
 
     <!-- INPUT SECTION -->
     <section id="inputSection">
-      <div class="input-wrapper">
+
+      <!-- Tab switcher -->
+      <div class="input-tabs">
+        <button class="input-tab active" id="tabPaste" onclick="switchTab('paste')">Paste Copy</button>
+        <button class="input-tab" id="tabUrl" onclick="switchTab('url')">Enter URL</button>
+      </div>
+
+      <!-- PASTE tab -->
+      <div class="input-wrapper" id="panePaste">
         <div class="input-header">
           <div class="input-dot red"></div>
           <div class="input-dot"></div>
           <div class="input-dot"></div>
-          <span class="input-label">Paste homepage copy here</span>
+          <span class="input-label">Paste above-the-fold copy here</span>
         </div>
         <textarea
           class="copy-textarea"
@@ -676,6 +743,32 @@ Trusted by teams everywhere. Scalable. Robust. Seamless.
           <button class="roast-btn" id="roastBtn" onclick="roastHomepage()" disabled>Roast It</button>
         </div>
       </div>
+
+      <!-- URL tab -->
+      <div class="input-wrapper" id="paneUrl" style="display:none;">
+        <div class="input-header">
+          <div class="input-dot red"></div>
+          <div class="input-dot"></div>
+          <div class="input-dot"></div>
+          <span class="input-label">Enter homepage URL</span>
+        </div>
+        <div class="url-input-area">
+          <input
+            type="url"
+            class="url-input"
+            id="urlInput"
+            placeholder="https://yourcompany.com"
+            oninput="updateUrlState()"
+            onkeydown="if(event.key==='Enter' && !document.getElementById('fetchBtn').disabled) fetchAndRoast()"
+          />
+          <p class="url-hint">We fetch and extract your homepage copy, then run the same 5-category analysis.</p>
+        </div>
+        <div class="input-footer">
+          <span class="url-status" id="urlStatus"></span>
+          <button class="roast-btn" id="fetchBtn" onclick="fetchAndRoast()" disabled>Fetch &amp; Roast</button>
+        </div>
+      </div>
+
     </section>
 
     <!-- RESULTS SECTION -->
@@ -1052,9 +1145,9 @@ Trusted by teams everywhere. Scalable. Robust. Seamless.
   var _lastAnalyzers = [];
 
   // ─── MAIN ROAST FUNCTION ───
-  function roastHomepage() {
-    var text = document.getElementById('copyInput').value;
-    if (!text.trim() || countWords(text) < 5) return;
+  // Core scorer — accepts text directly (used by both paste and URL flows)
+  function runScorer(text) {
+    if (!text || !text.trim() || countWords(text) < 5) return;
 
     var h  = analyzeHeadlineClarity(text);
     var ic = analyzeICPSpecificity(text);
@@ -1070,6 +1163,11 @@ Trusted by teams everywhere. Scalable. Robust. Seamless.
     _lastAnalyzers = analyzers;
 
     renderResults(total, analyzers, getVerdict(total));
+  }
+
+  function roastHomepage() {
+    var text = document.getElementById('copyInput').value;
+    runScorer(text);
   }
 
   function renderResults(total, analyzers, v) {
@@ -1197,7 +1295,87 @@ Trusted by teams everywhere. Scalable. Robust. Seamless.
     document.getElementById('copyInput').value = '';
     document.getElementById('wordCount').textContent = '0 words';
     document.getElementById('roastBtn').disabled = true;
+    document.getElementById('urlInput').value = '';
+    document.getElementById('urlStatus').textContent = '';
+    document.getElementById('fetchBtn').disabled = true;
     document.getElementById('inputSection').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // ─── TAB SWITCHER ───
+  function switchTab(tab) {
+    var isPaste = tab === 'paste';
+    document.getElementById('panePaste').style.display = isPaste ? '' : 'none';
+    document.getElementById('paneUrl').style.display  = isPaste ? 'none' : '';
+    document.getElementById('tabPaste').classList.toggle('active', isPaste);
+    document.getElementById('tabUrl').classList.toggle('active', !isPaste);
+  }
+
+  // ─── URL INPUT STATE ───
+  function updateUrlState() {
+    var val = document.getElementById('urlInput').value.trim();
+    var valid = val.length > 5 && /^https?:\/\//i.test(val);
+    document.getElementById('fetchBtn').disabled = !valid;
+    if (valid) {
+      document.getElementById('urlStatus').textContent = '';
+      document.getElementById('urlStatus').className = 'url-status';
+    }
+  }
+
+  // ─── FETCH & ROAST ───
+  var WORKER_URL = 'https://roaster-proxy.zerohype-co.workers.dev';
+
+  function fetchAndRoast() {
+    var url = document.getElementById('urlInput').value.trim();
+    var btn = document.getElementById('fetchBtn');
+    var status = document.getElementById('urlStatus');
+
+    btn.disabled = true;
+    btn.textContent = 'Fetching...';
+    status.textContent = 'Fetching page...';
+    status.className = 'url-status loading';
+
+    fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url: url }),
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (data.error) {
+        status.textContent = data.error;
+        status.className = 'url-status error';
+        btn.disabled = false;
+        btn.textContent = 'Fetch & Roast';
+        return;
+      }
+
+      var text = data.text || '';
+      if (text.length < 20) {
+        status.textContent = 'Page returned no readable copy. Try pasting manually.';
+        status.className = 'url-status error';
+        btn.disabled = false;
+        btn.textContent = 'Fetch & Roast';
+        return;
+      }
+
+      // Feed extracted text into the scorer
+      status.textContent = 'Analyzing ' + data.chars + ' characters...';
+      status.className = 'url-status loading';
+
+      setTimeout(function() {
+        runScorer(text);
+        btn.textContent = 'Fetch & Roast';
+        btn.disabled = false;
+        status.textContent = '';
+        status.className = 'url-status';
+      }, 300);
+    })
+    .catch(function(err) {
+      status.textContent = 'Network error. Try pasting copy manually.';
+      status.className = 'url-status error';
+      btn.disabled = false;
+      btn.textContent = 'Fetch & Roast';
+    });
   }
 
   </script>

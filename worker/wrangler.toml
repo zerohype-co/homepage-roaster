@@ -1,0 +1,10 @@
+name = "roaster-proxy"
+main = "src/index.js"
+compatibility_date = "2024-09-23"
+
+# Secrets (set via CLI, never in this file):
+#   wrangler secret put ACCOUNT_ID
+#   wrangler secret put CF_API_TOKEN
+#
+# After deploy, Worker is live at:
+#   https://roaster-proxy.zerohype-co.workers.dev
